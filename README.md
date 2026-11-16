@@ -1,3 +1,5 @@
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/inngest-1?utm_medium=integration&utm_source=button&utm_campaign=inngest)
+
 # Inngest on Railway
 
 A Railway template for self-hosted [Inngest](https://www.inngest.com), the durable workflow and background job engine. Your apps send events to it, and Inngest runs their functions step by step, with retries, queues, crons and flow control. This repo is the source every deployed Inngest service builds from.

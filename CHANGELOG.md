@@ -1,6 +1,10 @@
 # Changelog
 
 Breaking changes are listed first in each entry.
+## 1.53.0-2 (2026-11-16)
+
+- README: Deploy on Railway button linking to the published template `inngest-1`. No change to the app or its configuration.
+
 
 ## 1.53.0-1 (2026-11-16)
 
