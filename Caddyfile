@@ -1,0 +1,28 @@
+{
+	admin off
+	auto_https off
+	persist_config off
+}
+
+:{$PORT} {
+	# Routes the Inngest SDKs call. Inngest checks the event key or the
+	# signing key on these itself, so they pass through without a login.
+	@sdk path /health /e/* /fn/register /v0/connect /v0/connect/* /v0/runs/* /v1/* /api/v2/* /v2/*
+	handle @sdk {
+		reverse_proxy 127.0.0.1:{$INNGEST_PORT}
+	}
+
+	# Go profiler: never public.
+	handle /debug* {
+		respond 404
+	}
+
+	# Everything else (dashboard, GraphQL API, /invoke, /mcp, /metrics)
+	# has no authentication in Inngest, so it needs the dashboard login.
+	handle {
+		basic_auth {
+			{$DASHBOARD_USERNAME} {$DASHBOARD_PASSWORD_HASH}
+		}
+		reverse_proxy 127.0.0.1:{$INNGEST_PORT}
+	}
+}
